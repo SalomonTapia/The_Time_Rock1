@@ -15,3 +15,12 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+Route::model('events','Event');
+Route::bind('events',function($value, $route) {
+	return Event::whereId($value)->first();
+});
+Route::resource("discographyes", "DiscographyesController");
+Route::resource('events','EventsController');
+Route::resource("users","UsersController");
+Route::resource("reports","ReportsController");
+Route::resource("coments","ComentsController");
