@@ -15,6 +15,9 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+Route::get('/','HomeController@showWelcome');
+Route::get('event/index',array('uses'=>'EventsController@index','as'=>'get.event.index'));
+
 Route::model('events','Event');
 Route::bind('events',function($value, $route) {
 	return Event::whereId($value)->first();

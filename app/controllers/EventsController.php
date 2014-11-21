@@ -1,6 +1,6 @@
 <?php
 
-class EventsController extends \BaseController {
+class EventsController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -10,7 +10,7 @@ class EventsController extends \BaseController {
 	 */
 	public function index()
 	{
-		//$events = Event::all();
+	//	$events = Event::all();
 		$this->layout->content = View::make('events.index', compact('events'));
 	}
 
@@ -22,7 +22,7 @@ class EventsController extends \BaseController {
 	 */
 	public function create()
 	{
-		$this->layout->content = View::make('posts.create', compact('posts'));
+		$this->layout->content = View::make('events.create', compact('events'));
 	}
 
 	/**
@@ -33,43 +33,50 @@ class EventsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input=Input::all();
+		$input['user_id']=1;
+		Event::create($input);
+		return Redirect::route('events.index')->with('message','El nuevo post se ha creado');
 	}
 
 	/**
 	 * Display the specified resource.
 	 * GET /events/{id}
 	 *
-	 * @param  int  $id
+	 * @param  Event $event
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
-		//
+		//$event = Event::all();
+		$this->layout->content = View::make('events.show', compact('event'));
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 * GET /events/{id}/edit
 	 *
-	 * @param  int  $id
+	 * @param  Event $event
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Event $event)
 	{
-		//
+		$this->layout->content = View::make('events.edit', compact('event'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 * PUT /events/{id}
 	 *
-	 * @param  int  $id
+	 * @param  Event $event
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Event $event)
 	{
-		//
+		$input = array_except(Input::all(), '_method');
+		$event->update($input);
+
+		$this->layout->content = View::make('events.show', compact('event'))->with('message', 'Post actualizado');
 	}
 
 	/**

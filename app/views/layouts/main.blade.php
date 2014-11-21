@@ -7,6 +7,17 @@
     <title>THE TIME ROCK</title>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <script src="/assets/ckeditor/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.4.5.1/standard/ckeditor.js"></script>
+    <script src="/assets/xing-wysihtml5-fb0cfe4/parser_rules/advanced.js"></script>
+    <!-- Library -->
+    <script src="/assets/xing-wysihtml5-fb0cfe4/dist/wysihtml5-0.3.0.min.js"></script>
+    <script>
+    var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+      toolbar:      "wysihtml5-toolbar", // id of toolbar element
+      parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    });
+    </script>
   </head>
   <body style="" background="/assets/fondo_web.jpg">
     <nav class="navbar navbar-default" role="navigation">
@@ -68,14 +79,13 @@
       </div>
     </nav>
     <div class="container">
+    <div class="col-md-2"></div>
     	<div class="row">
-        	<div class="col-md-6" align="center"><font color="white">
-    		        @yield('main')
-    		    </font></div>
-    		    <div class="col-md-1">
-    		    </div>
-    		    <div class="col-md-4">
-    		    </div>
+        	<div class="col-md-6">
+                <font color="white">
+        		        @yield('main')
+        		    </font>
+          </div>
     	</div>
     </div>
 	   <script src="/assets/js/jquery-1.11.1.js"></script>
